@@ -9,6 +9,8 @@ public class BeanFuente implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	//Esta propiedad permite notificar a otros oyentes de que este componente (this) es la fuente del evento de cambio
+	//Se puede hacer aquí como propiedad o en el constructor del bean (sin el modificador final)
 	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
 
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -28,6 +30,7 @@ public class BeanFuente implements Serializable {
 	public void setValue(String newValue) {
 		String oldValue = this.value;
 		this.value = newValue;
+		//Se notifica el cambio de la propiedad
 		// 3 parámetros: El valor de la propiedad que se ha cambiado, el valor antiguo y
 		// el nuevo valor
 		this.pcs.firePropertyChange("value", oldValue, newValue);
